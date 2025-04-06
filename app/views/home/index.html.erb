@@ -22,7 +22,9 @@
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Pricing</a>
       </div>
       <div class="hidden lg:flex lf:flex-1 lg:justify-end">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">→</span></a>
+        <%= link_to new_user_session_path, class:"text-sm font-semibold leading-6 text-gray-900" do %>
+          Log in <span aria-hidden="true">&rarr;</span>
+        <% end %>
       </div>
     </nav>
     <div class="lg:hidden" role="dislog" aria-modal="true">
@@ -49,7 +51,9 @@
             <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-6 leading-7 text-gray-900 hover:bg-gray-50">Pricing</a>
           </div>
           <div class="py-6r">
-            <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-6 leading-7 text-gray-900 hover:bg-gray-50">Log in <span aria-hidden="true">→</span></a>
+            <%= link_to new_user_session_path, class:"-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-6 leading-7 text-gray-900 hover:bg-gray-500" do %>
+              Log in <span aria-hidden="true">&rarr;</span>
+            <% end %>
           </div>
         </div>
       </div>
@@ -67,7 +71,7 @@
             <h1 class="text-4xl fold-bold tracking-tight text-gray-900 sm:text-6xl">Sell your digital products and subscriptions</h1>
             <p class="mt-6 text-lg leading-8 text-gray-600">For a flat monthly fee (plus Stripe transaction cost)</p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
-              <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 cba">Get started</a>
+              <%= link_to "Get started", new_user_registration_path, class:"rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:offset-2 focus-visible:indigo-600" %>
               <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
             </div>
           </div>
