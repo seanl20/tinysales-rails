@@ -5,6 +5,7 @@ gem "devise"
 gem "dry-monads"
 gem "dry-rails", github: "dry-rb/dry-rails"
 gem "dry-struct"
+gem "friendly_id"
 gem "importmap-rails" # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "jbuilder" # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "money-rails"
