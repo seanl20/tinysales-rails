@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   root "home#index"
 
   get "dashboard", to: "dashboard#index"
+
+  resources :products, only: [ :index, :new, :create ]
 end
