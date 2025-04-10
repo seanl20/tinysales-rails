@@ -13,13 +13,13 @@ class ProductsController < ApplicationController
 
     case result
     in Success(product:)
-      redirect_to product_path(product)
+      redirect_to edit_product_path(product)
     in Failure(:invalid)
       render :new
     end
   end
 
-  def show
+  def edit
     @product = Products::Queries::Find.new.call(id: params[:id])
   end
 

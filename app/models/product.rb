@@ -4,4 +4,6 @@ class Product < ApplicationRecord
   monetize :price_cents, allow_nil: true
 
   belongs_to :user
+
+  validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :user_id }
 end

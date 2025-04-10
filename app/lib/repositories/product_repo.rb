@@ -5,7 +5,14 @@ module Repositories
     end
 
     def get(id:)
-      Product.find(id)
+      Product.friendly.find(id)
+    end
+
+    def update(id:, attrs:)
+      Product
+        .friendly
+        .find(id)
+        .update!(attrs)
     end
   end
 end
