@@ -50,4 +50,31 @@ RSpec.describe Repositories::ProductRepo do
       end
     end
   end
+
+  describe "#update_published" do
+    subject(:update_published) { described_class.new.update_published(id: product_id, published:) }
+    let!(:user) { FactoryBot.create(:user) }
+    let!(:product) { FactoryBot.create(:product, user:) }
+    let(:product_id) { product.id }
+
+    context "set published to true" do
+      let(:published) { true }
+
+      it "product published is true" do
+        update_published
+
+        expect(product.reload.published).to eq(true)
+      end
+    end
+
+    context "set published to false" do
+      let(:published) { false }
+
+      it "product published is false" do
+        update_published
+
+        expect(product.reload.published).to eq(false)
+      end
+    end
+  end
 end

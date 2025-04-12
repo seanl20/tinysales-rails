@@ -1,6 +1,16 @@
 <div>
   <div>
-    <div class="sticky top-0 bg-gray-50">Test</div>
+    <div class="sticky flex justify-between top-0 bg-gray-50">
+      <div class="text-4xl tracking-wide"><%= @product.name %></div>
+      <div>
+        <% if @product.published? %>
+          <%= link_to "Unpublish", product_unpublish_path(@product), class: "link" %>
+        <% else %>
+          <%= link_to "Publish", product_publish_path(@product), class: "link" %>
+        <% end %>
+        <%= link_to "Save Changes", "", class: "link" %>
+      </div>
+    </div>
     <div>
       <div>
         <strong>Andrew Alfred</strong>
