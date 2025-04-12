@@ -14,5 +14,12 @@ module Repositories
         .find(id)
         .update!(attrs)
     end
+
+    def update_published(id:, published:)
+      Product
+        .friendly
+        .find(id)
+        .update(published:)
+    end
   end
 end
