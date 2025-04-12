@@ -4,9 +4,9 @@
       <div class="text-4xl tracking-wide"><%= @product.name %></div>
       <div>
         <% if @product.published? %>
-          <%= link_to "Unpublish", product_unpublish_path(@product), class: "link" %>
+          <%= link_to "Unpublish", product_unpublish_path(@product), class: "link", data: { "turbo-method": :put} %>
         <% else %>
-          <%= link_to "Publish", product_publish_path(@product), class: "link" %>
+          <%= link_to "Publish", product_publish_path(@product), class: "link", data: { "turbo-method": :put} %>
         <% end %>
         <%= link_to "Save Changes", "", class: "link" %>
       </div>

@@ -3,7 +3,7 @@ module Products
     before_action :authenticate_user!
 
     def update
-      @product = Products::Commands::PublishProduct.new.call(id: params[:id])
+      @product = Products::Commands::UnpublishProduct.new.call(id: params[:id])
 
       flash[:success] = "Product successfully unpublished"
       redirect_to edit_product_path(@product)
