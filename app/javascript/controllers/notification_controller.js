@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import { enter, leave, toggle } from 'el-transition'
+import { enter, leave } from 'el-transition'
 
 // Connects to data-controller="notification"
 export default class extends Controller {
