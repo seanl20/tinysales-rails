@@ -23,9 +23,21 @@ class ProductsController < ApplicationController
     @product = Products::Queries::Find.new.call(id: params[:id])
   end
 
+  def update
+    result = Products::Commands::Update.new.call(id: params[:id], params: product_params)
+
+    case result
+    in Success(product:)
+      flash[:success] = "Product successfully updated."
+      redirect_to edit_product_path(product)
+    in Failure(:invalid)
+      render :edit
+    end
+  end
+
   private
 
   def product_params
-    params.require(:product).permit(:name, :price)
+    params.require(:product).permit(:name, :price, :slug)
   end
 end

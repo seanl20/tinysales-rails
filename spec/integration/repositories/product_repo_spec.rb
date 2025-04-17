@@ -77,4 +77,25 @@ RSpec.describe Repositories::ProductRepo do
       end
     end
   end
+
+  describe "#update" do
+    subject(:update) { described_class.new.update(id: product_id, attrs:) }
+    let!(:user) { FactoryBot.create(:user) }
+    let!(:product) { FactoryBot.create(:product, user:) }
+    let(:product_id) { product.id }
+
+    context "update product with attrs" do
+      let(:attrs) do
+        {
+          name: "test"
+        }
+      end
+
+      it "product updated successfully" do
+        update
+
+        expect(product.reload.name).to eq("test")
+      end
+    end
+  end
 end
