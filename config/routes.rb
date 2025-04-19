@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   get "dashboard", to: "dashboard#index"
 
-  resources :products, only: [ :index, :new, :create, :edit, :update ]
+  resources :products, only: [ :index, :new, :create, :edit, :update ] do
+    resources :contents, only: :index, controller: "products/contents"
+  end
 
   scope module: :products, path: :products, as: :product do
     resources :publish, only: :update
