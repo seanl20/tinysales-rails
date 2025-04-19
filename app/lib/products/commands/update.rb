@@ -5,7 +5,8 @@ module Products
     class Update < Command
       def call(id:, params:)
         attrs = Products::Changesets::Update.map(params).merge({
-          price: params[:price]
+          price: params[:price],
+          description: params[:description]
         })
 
         yield update_products(id:, attrs:)
