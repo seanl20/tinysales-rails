@@ -5,11 +5,7 @@ import { enter, leave } from 'el-transition'
 export default class extends Controller {
   connect() {
     setTimeout(() => {
-      this.element.classList.remove('hidden');
-
-      setTimeout(() => {
-        enter(this.element);
-      }, 100)
+      enter(this.element);
     }, 500);
 
     // Auto-hide
@@ -19,9 +15,7 @@ export default class extends Controller {
   }
 
   close(){
-    setTimeout(() => {
-      leave(this.element);
-    }, 100);
+    leave(this.element);
 
     // Remove after transition
     setTimeout(() => {
