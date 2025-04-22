@@ -7,4 +7,5 @@ RSpec.describe Product, type: :model do
   it { is_expected.to monetize(:price) }
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_uniqueness_of(:name).scoped_to(:user_id).case_insensitive }
+  it { is_expected.to have_many(:contents).dependent(:destroy) }
 end
