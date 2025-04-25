@@ -9,6 +9,7 @@ gem "friendly_id"
 gem "importmap-rails" # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "image_processing", "~> 1.2" # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "jbuilder" # Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem "jsonapi-serializer"
 gem "money-rails"
 gem "pg", "~> 1.1" # Use postgresql as the database for Active Record
 gem "puma", ">= 5.0" # Use the Puma web server [https://github.com/puma/puma]
