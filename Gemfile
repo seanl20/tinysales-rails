@@ -13,7 +13,7 @@ gem "jsonapi-serializer"
 gem "money-rails"
 gem "pg", "~> 1.1" # Use postgresql as the database for Active Record
 gem "puma", ">= 5.0" # Use the Puma web server [https://github.com/puma/puma]
-gem "rails", "~> 7.2.2", ">= 7.2.2.1" # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "~> 8.0.2" # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "sassc-rails"
 gem "sprockets-rails" # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "stimulus-rails" # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
