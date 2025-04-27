@@ -15,5 +15,13 @@ export default class extends Controller {
 
   uploadFiles(e) {
     console.log('uploadFiles', Array.from(e.target.files));
+
+    axios.post('/api/contents', {
+      name: e.target.files[0].name
+    }, {
+      headers: {
+        'ACCEPT': 'application/json'
+      }
+    });
   }
 }
