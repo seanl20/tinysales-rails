@@ -4,7 +4,9 @@ module Products
   module Queries
     class Find < Query
       def call(id:)
-        Repositories::ProductRepo.new.get(id:)
+        product = Repositories::ProductRepo.new.get(id:)
+
+        return product, product.contents.first
       end
     end
   end

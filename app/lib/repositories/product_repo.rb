@@ -5,7 +5,7 @@ module Repositories
     end
 
     def get(id:)
-      Product.friendly.find(id)
+      Product.friendly.includes(:contents).find(id)
     end
 
     def update(id:, attrs:)

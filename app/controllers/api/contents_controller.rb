@@ -8,7 +8,10 @@ module Api
 
       case result
       in Success(content:)
-        render json: ContentSerializer.new(content).serializable_hash.to_json
+        @content = content
+        respond_to do |format|
+          format.turbo_stream
+        end
       end
     end
 
