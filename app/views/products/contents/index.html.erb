@@ -6,14 +6,15 @@
       <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div class="sm:col-span-3">
           <%= turbo_frame_tag "uploaded_files" do %>
-            <%= render UploadedFileComponent.new(name: "airbnb-clone", file_type: "zip", file_size: "312.6 MB") %>
+            <% @contents.each do |content| %>
+              <%= render UploadedFileComponent.new(name: content.name, file_type: content.file_type, file_size: content.file_size) %>
+            <% end %>
           <% end %>
         </div>
       </div>
     </div>
 
     <div class="py-12">
-
       <h2 class="text-base/7 font-semibold text-gray-900">Content Delivery</h2>
       <p class="mt-1 text-sm/6 text-gray-600">Upload the product's content for purchase.</p>
 

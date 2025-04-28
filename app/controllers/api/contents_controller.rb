@@ -18,7 +18,7 @@ module Api
     private
 
     def content_params
-      params.require(:content).permit(:name)
+      params.require(:content).permit(:name, :file_size, :file_type)
     end
   end
 end

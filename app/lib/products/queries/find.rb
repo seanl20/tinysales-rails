@@ -6,7 +6,7 @@ module Products
       def call(id:)
         product = Repositories::ProductRepo.new.get(id:)
 
-        return product, product.contents.first
+        return product, product.contents
       end
     end
   end
