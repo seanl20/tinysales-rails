@@ -7,7 +7,7 @@
         <div class="sm:col-span-3">
           <%= turbo_frame_tag "uploaded_files" do %>
             <% @contents.each do |content| %>
-              <%= render UploadedFileComponent.new(name: content.name, file_type: content.file_type, file_size: content.file_size) %>
+              <%= render UploadedFileComponent.new(content_id: content.id, name: content.name, file_type: content.file_type, file_size: content.file_size) %>
             <% end %>
           <% end %>
         </div>
