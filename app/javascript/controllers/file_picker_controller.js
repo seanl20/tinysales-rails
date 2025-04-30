@@ -1,6 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
 import axios from 'axios';
 
+const contents = [];
+const contentIds = [];
+const files = [];
+
 // Connects to data-controller="file-picker"
 export default class extends Controller {
   static targets = [ 'button', 'fileInput', 'content' ];
@@ -17,7 +21,17 @@ export default class extends Controller {
     this.fileInputTarget.click();
   }
 
+  addContent(content) {
+    contents.push(content);
+  }
+
+  attachFile(content) {
+    content.attachFile(files[0]);
+  }
+
   uploadFiles(e) {
+    files.push(e.target.files[0]);
+
     axios.post('/api/contents', {
       name: e.target.files[0].name,
       file_size: e.target.files[0].size,
@@ -26,7 +40,7 @@ export default class extends Controller {
     .then((response) => {
       Turbo.renderStreamMessage(response.data)
       const contentId = response.data.match(/data-content-id=("\d+")/)[1].replace(/"|'/g, '')
-      console.log('contentId: ', contentId);
+      contentIds.push(contentId);
     });
   }
 }
