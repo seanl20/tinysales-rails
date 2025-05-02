@@ -15,10 +15,13 @@ module Api
       end
     end
 
+    def update
+    end
+
     private
 
     def content_params
-      params.require(:content).permit(:name, :file_size, :file_type)
+      params.require(:content).permit(:name, :file_size, :file_type, :file)
     end
   end
 end

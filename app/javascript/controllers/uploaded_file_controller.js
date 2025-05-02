@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import axios from 'axios';
 
 let file = null;
 
@@ -14,6 +15,10 @@ export default class extends Controller {
   attachFile(attachedFile) {
     file = attachedFile;
     console.log('files: ', file)
+  }
+
+  uploadFile() {
+    axios.host
   }
 
   open(e) {

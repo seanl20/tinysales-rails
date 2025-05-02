@@ -27,4 +27,25 @@ RSpec.describe Repositories::ContentRepo do
       end
     end
   end
+
+  describe "#get" do
+    subject(:get) { described_class.new.get(id: content_id) }
+
+    context "content exists" do
+      let!(:content) { FactoryBot.create(:content) }
+      let(:content_id) { content.id }
+
+      it "is successful" do
+        expect(get).to eq(content)
+      end
+    end
+
+    context "content does not exists" do
+      let(:content_id) { "test" }
+
+      it "is not found" do
+        expect { get }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end
