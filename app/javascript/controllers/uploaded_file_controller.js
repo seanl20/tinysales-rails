@@ -13,20 +13,17 @@ export default class extends Controller {
   }
 
   connect() {
-    this.filePickerOutlets[0].attachFile(this)
+    this.filePickerOutlet.attachFile(this)
   }
 
   attachFile(attachedFile) {
     file = attachedFile;
-    console.log('files: ', file)
   }
 
   uploadFile() {
     const config = {
       onUploadProgress: (progressEvent) => {
         const percentCompleted = Math.round( ( progressEvent.loaded * 100 ) / progressEvent.total );
-        console.log('progressEvent: ', progressEvent)
-        console.log('percentCompleted: ', percentCompleted)
       },
       headers: this.HEADERS
     }
@@ -36,9 +33,9 @@ export default class extends Controller {
 
 
     axios.put(`/api/contents/${this.element.dataset.contentId}`, data, config)
-      .then((response) => {
-        console.log('uploadFile response: ', response);
-      });
+    .then((response) => {
+      console.log('uploadFile response: ', response);
+    });
   }
 
   open(e) {
