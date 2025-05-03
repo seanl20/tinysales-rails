@@ -16,6 +16,17 @@ module Api
     end
 
     def update
+      result = Contents::Commands::Update.new.call(id: params[:id], params: content_params)
+
+      case result
+      in Success(content:)
+        @content = content
+        respond_to do |format|
+          format.json do
+            render json: {}, status: 201
+          end
+        end
+      end
     end
 
     private
