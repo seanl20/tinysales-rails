@@ -8,6 +8,10 @@ export default class extends Controller {
   static targets = ['form', 'open', 'close'];
   static outlets = [ 'file-picker' ];
 
+  HEADERS = {
+    'ACCEPT': 'application/json'
+  }
+
   connect() {
     this.filePickerOutlets[0].attachFile(this)
   }
@@ -18,7 +22,23 @@ export default class extends Controller {
   }
 
   uploadFile() {
-    axios.host
+    const config = {
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round( ( progressEvent.loaded * 100 ) / progressEvent.total );
+        console.log('progressEvent: ', progressEvent)
+        console.log('percentCompleted: ', percentCompleted)
+      },
+      headers: this.HEADERS
+    }
+
+    const data = new FormData();
+    data.append('content[file]', file);
+
+
+    axios.put(`/api/contents/${this.element.dataset.contentId}`, data, config)
+      .then((response) => {
+        console.log('uploadFile response: ', response);
+      });
   }
 
   open(e) {
