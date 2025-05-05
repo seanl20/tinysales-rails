@@ -35,7 +35,6 @@ export default class extends Controller {
     const data = new FormData();
     data.append('content[file]', file);
 
-
     axios.put(`/api/contents/${this.element.dataset.contentId}`, data, config)
     .then((response) => {
       this.uploadProgressTarget.classList.add('hidden')
