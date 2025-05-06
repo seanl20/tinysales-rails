@@ -14,7 +14,6 @@ export default class extends Controller {
   }
 
   connect() {
-    this.filePickerOutlet.attachFile(this)
   }
 
   attachFile(attachedFile) {
