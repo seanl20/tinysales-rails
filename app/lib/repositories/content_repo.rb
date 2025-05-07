@@ -7,5 +7,9 @@ module Repositories
     def get(id:)
       Content.find(id)
     end
+
+    def get_all(ids:)
+      Contents.where(id: ids)
+    end
   end
 end

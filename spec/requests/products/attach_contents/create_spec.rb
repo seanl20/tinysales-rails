@@ -1,0 +1,31 @@
+# frozen_string_literal: true
+
+require "rails_helper"
+
+RSpec.describe "PUT /products", type: :request do
+  context "when user is signed in" do
+    before { sign_in user }
+
+    context "when valid params" do
+      let!(:user) { FactoryBot.create(:user) }
+      let!(:product) { FactoryBot.create(:product, user:) }
+
+      it "successful" do
+        put product_unpublish_path(product)
+
+        expect(response).to be_redirect
+      end
+    end
+  end
+
+  context "when user is not signed in" do
+    let!(:user) { FactoryBot.create(:user) }
+    let!(:product) { FactoryBot.create(:product, user:) }
+
+    it "redirect to sign in path" do
+      put product_unpublish_path(product)
+
+      expect(response).to redirect_to(new_user_session_path)
+    end
+  end
+end

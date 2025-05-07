@@ -41,7 +41,20 @@ export default class extends Controller {
         Turbo.renderStreamMessage(response.data);
       });
     });
+  }
 
+  getUploadedFileComponent(){
+    return Array.from(document.getElementsByClassName('uploaded-file-component'));
+  }
 
+  submitForm(e){
+    e.preventDefault();
+    const productId = this.element.dataset.productId;
+    const contentIds = this.getUploadedFileComponent().map((file) => {
+      return parseInt(file.dataset.contentId)
+    });
+    console.log('Product Id: ', productId);
+    console.log('content Ids: ', contentIds);
+    console.log('TEST FORM SUBMIT');
   }
 }

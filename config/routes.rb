@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [ :index, :new, :create, :edit, :update ] do
     resources :contents, only: :index, controller: "products/contents"
+    resources :attach_contents, only: :create, controller: "products/attach_contents"
   end
 
   scope module: :products, path: :products, as: :product do
