@@ -2,10 +2,21 @@
 
 module Products
   module Commands
-    class Create < Command
-      def call(content_ids:, product_id:)
-        product = Repositories::ProductRepo.new.get(id: product_id)
-        contents = Repositories::ContentRepo.new.get_all(ids: content_ids)
+    class AttachContents < Command
+      def call(content_ids:, product_id:, content_params:)
+        content_params.map do |content_param|
+          update_content(content_param:, product_id:)
+        end
+      end
+
+      def update_content(content_param:, product_id:)
+        attrs = {
+          name: content_param[:name],
+          description: content_param[:description],
+          product_id:
+        }
+
+        Repositories::ContentRepo.new.update(id: content_param[:id], attrs:)
       end
     end
   end

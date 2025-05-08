@@ -8,8 +8,14 @@ module Repositories
       Content.find(id)
     end
 
-    def get_all(ids:)
-      Contents.where(id: ids)
+    def get_by_ids(ids:)
+      Content.where(id: ids)
+    end
+
+    def update(id:, attrs:)
+      Content
+        .find(id)
+        .update!(attrs)
     end
   end
 end
