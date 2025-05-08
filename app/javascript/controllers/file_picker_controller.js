@@ -43,18 +43,33 @@ export default class extends Controller {
     });
   }
 
-  getUploadedFileComponent(){
+  buildContentParam(fileComponent) {
+    const contentId = parseInt(fileComponent.dataset.contentId);
+    const name = fileComponent.querySelector('input[name="name"]').value;
+    const description = fileComponent.querySelector('input[name="description"]').value;
+
+    return {
+      contentId: contentId,
+      name: name,
+      description: description
+    }
+  }
+
+  getUploadedFileComponents(){
     return Array.from(document.getElementsByClassName('uploaded-file-component'));
   }
 
   submitForm(e){
     e.preventDefault();
     const productId = this.element.dataset.productId;
-    const contentIds = this.getUploadedFileComponent().map((file) => {
-      return parseInt(file.dataset.contentId)
+    const contents = [];
+
+    this.getUploadedFileComponents().forEach((fileComponent) => {
+      contents.push(this.buildContentParam(fileComponent));
     });
     console.log('Product Id: ', productId);
-    console.log('content Ids: ', contentIds);
+    console.log('contents array: ', contents);
     console.log('TEST FORM SUBMIT');
   }
+
 }
