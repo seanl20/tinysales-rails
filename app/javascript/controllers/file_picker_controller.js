@@ -49,7 +49,7 @@ export default class extends Controller {
     const description = fileComponent.querySelector('input[name="description"]').value;
 
     return {
-      contentId: contentId,
+      id: contentId,
       name: name,
       description: description
     }
@@ -67,9 +67,12 @@ export default class extends Controller {
     this.getUploadedFileComponents().forEach((fileComponent) => {
       contents.push(this.buildContentParam(fileComponent));
     });
-    console.log('Product Id: ', productId);
-    console.log('contents array: ', contents);
-    console.log('TEST FORM SUBMIT');
+    
+    axios.post(`/products/${productId}/attach_contents`, {
+      contents: contents
+    })
+    .then((response) => {
+    });
   }
 
 }

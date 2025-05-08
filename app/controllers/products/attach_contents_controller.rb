@@ -1,9 +1,13 @@
 module Products
   class AttachContentsController < ApplicationController
-    before_action :authenticate_user!
+    protect_from_forgery with: :null_session
+    # before_action :authenticate_user!
 
     def create
-      Commands::AttachContents.new.call(content_ids: content_ids, product_id: params[:product_id], content_params:)
+      puts params[:product_id]
+      @product = Commands::AttachContents.new.call(content_ids: content_ids, product_id: params[:product_id], content_params:)
+
+      redirect_to product_path(@product)
     end
 
     def content_params
