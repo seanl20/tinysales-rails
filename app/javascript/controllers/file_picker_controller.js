@@ -72,6 +72,7 @@ export default class extends Controller {
       contents: contents
     })
     .then((response) => {
+      Turbo.visit(`/products/${productId}/edit`);
     });
   }
 

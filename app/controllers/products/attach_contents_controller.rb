@@ -4,10 +4,10 @@ module Products
     # before_action :authenticate_user!
 
     def create
-      puts params[:product_id]
       @product = Commands::AttachContents.new.call(content_ids: content_ids, product_id: params[:product_id], content_params:)
 
-      redirect_to product_path(@product)
+      flash[:success] = "Files Successfully Uploaded."
+      redirect_to edit_product_path(@product)
     end
 
     def content_params
