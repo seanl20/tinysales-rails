@@ -29,6 +29,16 @@ module Api
       end
     end
 
+    def destroy
+      Contents::Commands::Delete.new.call(id: params[:id])
+
+      respond_to do |format|
+        format.json do
+          render json: {}, status: 200
+        end
+      end
+    end
+
     private
 
     def content_params
