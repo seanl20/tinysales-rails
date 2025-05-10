@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Products::Queries::Find.new.call(id: params[:id])
+    puts @product
   end
 
   def update

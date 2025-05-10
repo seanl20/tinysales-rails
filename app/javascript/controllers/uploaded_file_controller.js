@@ -14,6 +14,9 @@ export default class extends Controller {
   }
 
   connect() {
+    if(this.element.dataset.uploadCompleted !== 'true'){
+      this.filePickerOutlet.attachFile(this);
+    }
   }
 
   attachFile(attachedFile) {
@@ -44,6 +47,8 @@ export default class extends Controller {
   uploadProgressText(percentageCompleted, uploadRate) {
     const totalFileSize = this.uploadProgressTarget.dataset.fileSize;
     const fileType = this.uploadProgressTarget.dataset.fileType;
+
+    if (uploadRate === undefined) return;
 
     return `${fileType} · ${percentageCompleted}% of ${totalFileSize} (${prettyBytes(uploadRate).toUpperCase()}/second)`
   }
