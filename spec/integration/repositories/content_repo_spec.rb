@@ -91,4 +91,25 @@ RSpec.describe Repositories::ContentRepo do
       end
     end
   end
+
+  describe "#delete" do
+    subject(:delete) { described_class.new.delete(id:) }
+
+    context "when content exists" do
+      let!(:content) { FactoryBot.create(:content) }
+      let(:id) { content.id }
+
+      it "delete content" do
+        expect { delete }.to change { Content.count }.by(-1)
+      end
+    end
+
+    context "when content does not exists" do
+      let(:id) { "test" }
+
+      it "returns record invalid" do
+        expect { delete }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end

@@ -69,6 +69,11 @@ export default class extends Controller {
 
   delete(e) {
     e.preventDefault();
-    this.element.remove();
+
+    axios.delete(`/api/contents/${this.element.dataset.contentId}`,
+      { headers: this.HEADERS }
+    ).then((_) => {
+      this.element.remove();
+    });
   }
 }

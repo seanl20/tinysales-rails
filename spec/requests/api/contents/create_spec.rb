@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "POST /products", type: :request do
+RSpec.describe "POST /api/contents", type: :request do
   before { sign_in user }
 
   context "when valid params" do
@@ -10,10 +10,11 @@ RSpec.describe "POST /products", type: :request do
 
     it "create property and redirect" do
       post api_contents_path, params: {
-        product: {
-          name: "name"
+        content: {
+          name: "name",
+          file_type: "application/pdf"
         }
-      }
+      }, headers: { ACCEPT: "text/vnd.turbo-stream.html" }
 
       expect(response).to be_successful
     end

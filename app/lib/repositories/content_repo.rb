@@ -17,5 +17,9 @@ module Repositories
         .find(id)
         .update!(attrs)
     end
+
+    def delete(id:)
+      Content.find(id).destroy
+    end
   end
 end
