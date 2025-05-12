@@ -10,6 +10,8 @@ module Products
 
         product = yield create_product(attrs:)
 
+        product.thumbnail.attach(params[:thumbnail])
+
         Success(product:)
       end
 
