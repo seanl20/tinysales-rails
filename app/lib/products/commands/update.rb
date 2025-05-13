@@ -6,13 +6,15 @@ module Products
       def call(id:, params:)
         attrs = Products::Changesets::Update.map(params).merge({
           price: params[:price],
-          description: params[:description],
-          contents: params[:contents]
+          description: params[:description]
         })
 
         yield update_products(id:, attrs:)
 
-        Success(product: Repositories::ProductRepo.new.get(id: params[:slug]))
+        product = Repositories::ProductRepo.new.get(id: params[:slug])
+        product.thumbnail.attach(params[:thumbnail])
+
+        Success(product:)
       end
 
       def update_products(id:, attrs:)
