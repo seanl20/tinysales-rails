@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="product-form"
 export default class extends Controller {
-  static targets = ['thumbnail'];
+  static targets = ['thumbnail', 'thumbnailInput' ];
 
   connect() {
     console.log("Thumbnail: ", this.thumbnailTarget)
@@ -25,6 +25,7 @@ export default class extends Controller {
       alert('Attached file must be an image!');
     }
 
-    this.thumbnailTarget.files = e.target.files;
+    this.thumbnailInputTarget.files = e.target.files;
+    this.thumbnailTarget.src = URL.createObjectURL(file);
   }
 }

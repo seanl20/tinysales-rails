@@ -30,7 +30,11 @@
               <tr>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                   <div class="h-11 w-11 flex-shrink-0">
-                    <img alt="" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="h-11 w-11 rounded-full">
+                    <% if product.thumbnail.attached? %>
+                      <%= image_tag product.thumbnail.variant(resize_to_fill: [500, 500]) %>
+                    <% else %>
+                      <img alt="" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="h-11 w-11 rounded-full">
+                    <% end %>
                   </div>
                 </td>
                 <td class="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
