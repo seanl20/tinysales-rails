@@ -28,12 +28,12 @@
           <tbody class="divide-y divide-gray-200 bg-white">
             <% @products.each do |product| %>
               <tr>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500 w-0">
                   <div class="h-11 w-11 flex-shrink-0">
                     <% if product.thumbnail.attached? %>
                       <%= image_tag product.thumbnail.variant(resize_to_fill: [500, 500]) %>
                     <% else %>
-                      <img alt="" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="h-11 w-11 rounded-full">
+                      <%= image_tag "gallery.png" %>
                     <% end %>
                   </div>
                 </td>
