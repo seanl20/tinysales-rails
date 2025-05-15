@@ -33,7 +33,13 @@
         <div class="sm:col-span-6">
           <%= f.label :thumbnail, class:"block text-sm/6 font-medium text-gray-900" %>
           <div class="mt-2 flex items-center gap-x-3">
-            <%= image_tag @product.thumbnail.variant(resize_to_fill: [500, 500]), data: { "product-form-target": "thumbnail" } %>
+            <div class="size-24">
+              <% if @product.thumbnail.attached? %>
+                <%= image_tag @product.thumbnail.variant(resize_to_fill: [500, 500]), data: { "product-form-target": "thumbnail" } %>
+              <% else %>
+                <%= image_tag "gallery.png", data: { "product-form-target": "thumbnail" } %>
+              <% end %>
+            </div>
             <%= f.file_field :thumbnail, data: { "product-form-target": "thumbnailInput", action: "change->product-form#attachThumbnail" }, class: "hidden" %>
             <%= button_tag "Change", data: { action: "click->product-form#changeThumbnail" }, class:"rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50" %>
           </div>
