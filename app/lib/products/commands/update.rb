@@ -12,7 +12,7 @@ module Products
         yield update_products(id:, attrs:)
 
         product = Repositories::ProductRepo.new.get(id: params[:slug])
-        product.thumbnail.attach(params[:thumbnail])
+        attach_images(product:, params:)
 
         Success(product:)
       end
@@ -21,6 +21,14 @@ module Products
         Success(Repositories::ProductRepo.new.update(id:, attrs:))
       rescue ActiveRecord::RecordInvalid
         Failure(:invalid)
+      end
+
+      def attach_images(product:, params:)
+        puts "params.inspect"
+        puts params.inspect
+        puts "params.inspect"
+        product.thumbnail.attach(params[:thumbnail]) if params[:thumbnail]
+        product.cover.attach(params[:cover]) if params[:cover]
       end
     end
   end

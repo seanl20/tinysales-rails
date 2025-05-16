@@ -4,15 +4,33 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="product-form"
 export default class extends Controller {
-  static targets = ['thumbnail', 'thumbnailInput' ];
+  static targets = ['thumbnail', 'thumbnailInput', 'coverInput', 'cover' ];
 
   connect() {
     console.log("Thumbnail: ", this.thumbnailTarget)
   }
 
+  changeCover(e) {
+    e.preventDefault();
+    this.coverInputTarget.click();
+  }
+
+  attachCover(e) {
+    e.preventDefault();
+
+    const file = e.target.files[0];
+
+    if(!ImageTypes.includes(file.type)){
+      alert('Attached file must be an image!');
+    }
+
+    this.coverInputTarget.files = e.target.files;
+    this.coverTarget.src = URL.createObjectURL(file);
+  }
+
   changeThumbnail(e) {
     e.preventDefault();
-    this.thumbnailTarget.click();
+    this.thumbnailInputTarget.click();
   }
 
   attachThumbnail(e) {

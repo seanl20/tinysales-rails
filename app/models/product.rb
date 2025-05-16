@@ -11,6 +11,7 @@ class Product < ApplicationRecord
   has_rich_text :description
 
   has_one_attached :thumbnail
+  has_one_attached :cover
 
   def draft?
     !published?
