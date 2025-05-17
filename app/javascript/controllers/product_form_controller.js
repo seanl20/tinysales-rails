@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="product-form"
 export default class extends Controller {
-  static targets = ['thumbnail', 'thumbnailInput', 'coverInput', 'cover' ];
+  static targets = ['thumbnail', 'thumbnailInput', 'coverInput', 'cover', 'coverSection', 'coverUploadSection' ];
 
   connect() {
     console.log("Thumbnail: ", this.thumbnailTarget)
@@ -26,6 +26,10 @@ export default class extends Controller {
 
     this.coverInputTarget.files = e.target.files;
     this.coverTarget.src = URL.createObjectURL(file);
+
+    this.coverUploadSectionTarget.classList.add('hidden')
+    this.coverSectionTarget.classList.remove('hidden')
+
   }
 
   changeThumbnail(e) {
