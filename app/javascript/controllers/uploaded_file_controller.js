@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
-import axios from 'axios';
-import prettyBytes from 'pretty-bytes';
+import axios from 'axios'
+import { destroy } from "@rails/request.js"
+import prettyBytes from 'pretty-bytes'
 
 let file = null;
 
@@ -8,10 +9,6 @@ let file = null;
 export default class extends Controller {
   static targets = ['form', 'open', 'close', 'metaData', 'uploadProgress'];
   static outlets = [ 'file-picker' ];
-
-  HEADERS = {
-    'ACCEPT': 'application/json'
-  }
 
   connect() {
     if(this.element.dataset.uploadCompleted !== 'true'){
@@ -24,6 +21,8 @@ export default class extends Controller {
   }
 
   uploadFile() {
+    const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+
     const config = {
       onUploadProgress: (progressEvent) => {
         const percentCompleted = Math.round( ( progressEvent.loaded * 100 ) / progressEvent.total );
@@ -31,11 +30,15 @@ export default class extends Controller {
         this.metaDataTarget.classList.add('hidden')
         this.uploadProgressTarget.textContent = this.uploadProgressText(percentCompleted, progressEvent.rate);
       },
-      headers: this.HEADERS
+      headers: {
+        'ACCEPT': 'application/json',
+        'X-CSRF-Token': csrfToken
+      }
     }
 
     const data = new FormData();
     data.append('content[file]', file);
+
 
     axios.put(`/api/contents/${this.element.dataset.contentId}`, data, config)
     .then((response) => {
@@ -67,13 +70,15 @@ export default class extends Controller {
     this.formTarget.classList.add('hidden');
   }
 
-  delete(e) {
+  async delete(e) {
     e.preventDefault();
 
-    axios.delete(`/api/contents/${this.element.dataset.contentId}`,
-      { headers: this.HEADERS }
-    ).then((_) => {
+    const response = await destroy(`/api/contents/${this.element.dataset.contentId}`, { headers: {
+      'ACCEPT': 'application/json'
+    }});
+
+    if (response.ok) {
       this.element.remove();
-    });
+    }
   }
 }
