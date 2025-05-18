@@ -321,6 +321,8 @@ GEM
     regexp_parser (2.10.0)
     reline (0.6.1)
       io-console (~> 0.5)
+    requestjs-rails (0.0.13)
+      railties (>= 7.1.0)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -470,6 +472,7 @@ DEPENDENCIES
   pry-rails
   puma (>= 5.0)
   rails (~> 7.2.2, >= 7.2.2.1)
+  requestjs-rails
   rspec-rails
   rubocop-rails-omakase
   sassc-rails
