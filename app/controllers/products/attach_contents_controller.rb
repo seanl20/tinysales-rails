@@ -6,8 +6,12 @@ module Products
     def create
       @product = Commands::AttachContents.new.call(content_ids: content_ids, product_id: params[:product_id], content_params:)
 
-      flash[:success] = "Files Successfully Uploaded."
-      redirect_to edit_product_path(@product)
+      respond_to do |format|
+        format.turbo_stream do
+          flash[:success] = "Files Successfully Uploaded."
+          # redirect_to edit_product_path(@product)
+        end
+      end
     end
 
     def content_params
