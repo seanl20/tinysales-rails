@@ -11,9 +11,9 @@ RSpec.describe "PUT /products", type: :request do
       let!(:product) { FactoryBot.create(:product, user:) }
 
       it "create property and redirect" do
-        put product_publish_path(product)
+        put product_publish_path(product), headers: { ACCEPT: "text/vnd.turbo-stream.html" }
 
-        expect(response).to be_redirect
+        expect(response.status).to eq(200)
       end
     end
   end
