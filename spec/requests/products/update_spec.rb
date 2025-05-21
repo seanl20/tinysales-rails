@@ -7,9 +7,10 @@ RSpec.describe "PUT /products/:id", type: :request do
 
   context "when valid params" do
     let(:user) { FactoryBot.create(:user) }
+    let!(:product) { FactoryBot.create(:product, user:) }
 
     it "create property and redirect" do
-      put product_path, params: {
+      put product_path(product), params: {
         product: {
           name: "name",
           slug: "name",

@@ -24,9 +24,6 @@ module Products
       end
 
       def attach_images(product:, params:)
-        puts "params.inspect"
-        puts params.inspect
-        puts "params.inspect"
         product.thumbnail.attach(params[:thumbnail]) if params[:thumbnail]
         product.cover.attach(params[:cover]) if params[:cover]
       end
