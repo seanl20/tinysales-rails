@@ -1,25 +1,38 @@
-<div class="mx-auto max-w-7xl border border-b my-8">
-  <%= image_tag @product.cover, class: "block" %>
+<div class="py-12">
+  <div class="mx-auto max-w-7xl border border-b my-8">
+    <%= image_tag @product.cover.variant(resize_to_fill: [1280, 720]), class: "block border-b border-black" %>
 
-  <div class="grid grid-cols-3">
-    <div class="col-span-2 border-r border-black">
-      <h1 class="py-4 text-4xl tracking-wide border-b border-black px-8"><%= @product.name %></h1>
-      <div class="px-8 flex border-b border-black">
-        <div class="py-4 pr-4 border-r border-black">
-          <%= humanized_money_with_symbol(@product.price) %>
+    <div class="grid grid-cols-3">
+      <div class="col-span-2 border-r border-black">
+        <h1 class="px-8 py-4 text-4xl tracking-wide border-b border-black px-8"><%= @product.name %></h1>
+        <div class="flex border-b border-black">
+          <div class="py-4 px-8 border-r border-black">
+            <span class="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-md font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"><%= humanized_money_with_symbol(@product.price) %></span>
+          </div>
+          <div class="py-4 px-4">
+            <span><%= @product.user.email %>
+          </div>
         </div>
-        <div class="py-4 pl-4">
-          <span><%= @product.user.email %>
+
+        <div class="p-8">
+          <%= @product.description %>
         </div>
       </div>
-
-      <div class="px-8">
-        <%= @product.description %>
+      <div class="col-span-1 px-8 py-4">
+        <div class="mb-8">
+          <%= button_tag "I want this!", class: "w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+        </div>
+        <div>
+          <ul role="list" class="divide-y divide-black overflow-hidden shadow-sm ring-1 ring-black-900/5 sm:rounded-xl">
+            <li class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6">
+              <%= link_to product_url(@product), class:"link" %>
+            </li>
+            <li class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6">
+              <span class="font-semibold">Size:</span><span><%= number_to_human_size(@product.contents.pluck(:file_size).sum) %></span>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="col-span-1">
-      <%= button_tag "I want this!" %>
-      <%= number_to_human_size(@product.contents.pluck(:file_size).sum) %>
     </div>
   </div>
 </div>
