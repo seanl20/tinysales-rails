@@ -1,12 +1,19 @@
-<div class="container <%= horizontal_padding %>">
+<div class="mx-auto max-w-7xl border border-b my-8">
   <%= image_tag @product.cover, class: "block" %>
 
   <div class="grid grid-cols-3">
-    <div class="col-span-2">
-      <h1 class="text-4xl tracking-wide"><%= @product.name %></h1>
-      <p><%= humanized_money_with_symbol(@product.price) %> | <%= @product.user.email %> </p>
+    <div class="col-span-2 border-r border-black">
+      <h1 class="py-4 text-4xl tracking-wide border-b border-black px-8"><%= @product.name %></h1>
+      <div class="px-8 flex border-b border-black">
+        <div class="py-4 pr-4 border-r border-black">
+          <%= humanized_money_with_symbol(@product.price) %>
+        </div>
+        <div class="py-4 pl-4">
+          <span><%= @product.user.email %>
+        </div>
+      </div>
 
-      <div>
+      <div class="px-8">
         <%= @product.description %>
       </div>
     </div>
