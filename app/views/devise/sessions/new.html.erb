@@ -17,9 +17,9 @@
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "space-y-6"}) do |f| %>
       <div>
-        <%= f.label :email, class: "block text-sm/6 font-medium text-gray-900" %>
+        <%= f.label :login, "Username or email", class: "block text-sm/6 font-medium text-gray-900" %>
         <div class="mt-2">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" %>
+          <%= f.text_field :login, autofocus: true, autocomplete: "email", class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" %>
         </div>
       </div>
 
